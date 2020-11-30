@@ -3,8 +3,13 @@
 <div class="container">
     <h1>Student Info</h1>
     <hr>
-    <h3>Student name : {{student_id.firstName}} {{student_id.lastName}}</h3>
-    <h3>email : {{student_id.email}} </h3>
-    <h3>phone : {{student_id.phone}} </h3>
+    <h3>Id  : {{student_info.id}} </h3>
+    <h3>Student name : {{student_info.firstName}} {{student_info.lastName}}</h3>
+    <h3>email : {{student_info.email}} </h3>
+    <h3>phone : {{student_info.phone}} </h3>
+    <br>
+    <a href="{% url 'update' studentid=student_info.id  %}" class="btn btn-primary"> Update </a>
+    <a href="{% url 'delet' studentid=student_info.id  %}" class="btn btn-primary"> Delet </a>
+
 </div>
 {% endblock content %}

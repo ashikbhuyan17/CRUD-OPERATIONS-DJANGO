@@ -5,7 +5,7 @@
 
 <ul>
     {% for s in  student_list %}
-       <li> <a href="{% url 'student_info' studentid=s.id  %}">{{s.firstName}} {{s.lastName}}</li></a>
+       <li> <a href="{% url 'student_info' studentid=s.id  %}">ID -> {{s.id}} : {{s.firstName}} {{s.lastName}}</li></a>
         
         
     {% endfor %}

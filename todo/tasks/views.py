@@ -19,13 +19,14 @@ def index(request):
     }
     return render(request, 'list.html', context)
 
+
 def students_form(request):
     sform=studentsForm() 
     if request.method == "POST" :
         sform=studentsForm(request.POST)
         if sform.is_valid():
             sform.save()
-            return redirect(students_form)
+            return redirect(home)
     context={
         'title':"studentForm",
         "sform": sform,
@@ -43,10 +44,36 @@ def home(request):
 
 
 def student_info(request,studentid):
-    student_id = Student.objects.get(pk=studentid)
+    student_info = Student.objects.get(pk=studentid)
     context={
-        'student_id':student_id,
+        'student_info':student_info,
     }
     
     return render(request, 'student_info.html',context)
     
+
+def update(request,studentid):
+    student_info = Student.objects.get(pk=studentid)
+    
+    updateForm=studentsForm(instance=student_info) 
+    if request.method == "POST" :
+        updateForm=studentsForm(request.POST,instance=student_info)
+        if updateForm.is_valid():
+            updateForm.save()
+            return redirect(home)
+    context={
+        'title':"updateForm",
+        "updateForm": updateForm,
+    }
+    return render(request, 'update.html', context)
+    
+
+def delet(request,studentid):
+    student_info = Student.objects.get(pk=studentid).delete()
+    context={
+        'title':"DeletInfo",
+        "delet_message": "Delet Done",
+    }
+    return render(request, 'delet.html', context)
+    
+
